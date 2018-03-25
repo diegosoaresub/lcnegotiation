@@ -1,4 +1,4 @@
-package com.ifes.lc.negotiation;
+package com.ifes.lc.negotiation.attribute;
 
 import java.util.ArrayList;
 import java.util.List;
