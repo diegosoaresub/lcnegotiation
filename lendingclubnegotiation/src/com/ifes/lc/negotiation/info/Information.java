@@ -1,5 +1,6 @@
 package com.ifes.lc.negotiation.info;
 
+
 public class Information {
 	
 	private String name;
@@ -23,6 +24,16 @@ public class Information {
 		return value;
 	}
 
+	public Double getDoubleValue() {
+		if (value instanceof Number)
+			return ((Number)value).doubleValue();
+		
+		if(value instanceof String)
+			return Double.valueOf((String)value);
+		
+		throw new IllegalArgumentException(value + " nao pode ser Double");
+	}
+	
 	public void setValue(Object value) {
 		this.value = value;
 	}

@@ -81,11 +81,11 @@ public class NegotiationStrategie {
         }
     }
 
-    public Double computeProposalScore(Agent agent, Map<String, AttributeProposal> proposal){
+    public Double computeProposalScore(Agent agentProposal, Map<String, AttributeProposal> proposal){
         Double proposalValue = 0.0;
 
         for (Attribute attr:
-                agent.getObj().getAttrs()) {
+                agentProposal.getObj().getAttrs()) {
 
             Double value = proposal.get(attr.getName()).getValue();
             if (value != null){
@@ -100,21 +100,13 @@ public class NegotiationStrategie {
 
     }
 
-    public Double computeCounterProposalScore(Agent agent, Map<String, AttributeProposal> counterProposal){
-        Double counterProposalValue = 0.0;
-
-        for (Attribute attr:
-                agent.getObj().getAttrs()) {
-
-            Double value = counterProposal.get(attr.getName()).getValue();
-            if (value != null){
-                counterProposalValue += computeAttributeProposalScore(attr.getMax(), attr.getMin(),
-                        value, attr.getAttributeType(),
-                        attr.getWeight());
-            }
-
-        }
-        return Util.round2Places(counterProposalValue);
+    public Double computeCounterProposalScore(Agent agentProposal, Agent agentCounterProposal){
+        Double counterProposalValue = computeProposalScore(agentProposal, agentCounterProposal.getActualProposal());
+        
+        if(!agentCounterProposal.getInfo().isEmpty()) 
+        		return agentProposal.evaluateProposalInfo(counterProposalValue, agentCounterProposal.getActualProposal(), agentCounterProposal.getInfo());
+        
+        return counterProposalValue;
     }
 
 

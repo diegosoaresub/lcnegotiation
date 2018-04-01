@@ -20,7 +20,7 @@ import com.ifes.lc.negotiation.util.Util;
 /**
  * Created by diegosoaresub on 28/05/17.
  */
-public class Agent {
+public abstract class Agent {
 
 	protected NegotiationStrategie strategie;
 
@@ -74,8 +74,7 @@ public class Agent {
 		Double proposalValue = this.strategie.computeProposalScore(this, this.getActualProposal());
 		Log.println("\t\t" + this.getName() + ":" + proposalValue);
 
-		Double counterProposalValue = this.strategie.computeCounterProposalScore(this,
-				agentCounterProposal.getActualProposal());
+		Double counterProposalValue = this.strategie.computeCounterProposalScore(this, agentCounterProposal);
 		Log.println("\t\t" + agentCounterProposal.getName() + ":" + counterProposalValue);
 
 		if (counterProposalValue >= proposalValue) {
@@ -194,9 +193,19 @@ public class Agent {
 		this.bidHistory = bidHistory;
 	}
 
+	public Map<String, Information> getInfo() {
+		return info;
+	}
+
+	public void setInfo(Map<String, Information> info) {
+		this.info = info;
+	}
+
 	@Override
 	public String toString() {
 		return "Agent{" + "strategie=" + strategie + ", name='" + name + '\'' + ", obj=" + obj + ", actualProposal="
 				+ actualProposal + '}';
 	}
+
+	public abstract Double evaluateProposalInfo(Double proposalValue, Map<String, AttributeProposal> map, Map<String, Information> info2);
 }
