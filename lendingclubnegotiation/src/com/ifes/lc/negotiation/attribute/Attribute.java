@@ -7,6 +7,8 @@ public class Attribute {
 
     private String name;
 
+    private String nameOnModel;
+    
     private AttributeType attributeType;
 
     private Double weight;
@@ -21,12 +23,7 @@ public class Attribute {
     
     private Double concessionSpeed;
 
-    public Attribute(String name, AttributeType attributeType){
-        this.name = name;
-        this.attributeType = attributeType;
-    }
-
-    public Attribute(String name, Double weight, Double pap, Double min, Double max, AttributeType attributeType) {
+    public Attribute(String name, String nameOnModel, Double weight, Double pap, Double min, Double max, AttributeType attributeType) {
         this.name = name;
         this.weight = weight;
         this.pap = pap;
@@ -34,6 +31,7 @@ public class Attribute {
         this.max = max;
         this.attributeType = attributeType;
         this.concessionSpeed = computeConcessionSpeed();
+        this.nameOnModel = nameOnModel;
     }
 
     private Double computeConcessionSpeed(){
@@ -111,13 +109,14 @@ public class Attribute {
 		this.initialValue = initialValue;
 	}
 
-	@Override
-	public String toString() {
-		return "Attribute [name=" + name + ", attributeType=" + attributeType + ", weight=" + weight + ", pap=" + pap
-				+ ", min=" + min + ", max=" + max + ", initialValue=" + initialValue + ", concessionSpeed="
-				+ concessionSpeed + "]";
+	public String getNameOnModel() {
+		return nameOnModel;
 	}
 
+	public void setNameOnModel(String nameOnModel) {
+		this.nameOnModel = nameOnModel;
+	}
+	
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;

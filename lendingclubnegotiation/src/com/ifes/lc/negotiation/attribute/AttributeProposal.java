@@ -7,17 +7,20 @@ public class AttributeProposal {
 
     private String name;
 
+    private String nameOnModel;
+    
     private Double value;
 
     private Double weight;
 
     private AttributeType type;
 
-    public AttributeProposal(String name, Double value, Double weight, AttributeType type) {
+    public AttributeProposal(String name, String nameModel, Double value, Double weight, AttributeType type) {
         this.name = name;
         this.value = value;
         this.weight = weight;
         this.type = type;
+        this.nameOnModel = nameModel;
     }
 
     public AttributeType getType() {
@@ -51,4 +54,12 @@ public class AttributeProposal {
     public void setWeight(Double weight) {
         this.weight = weight;
     }
+
+	public String getNameOnModel() {
+		return nameOnModel;
+	}
+
+	public void setNameOnModel(String nameOnModel) {
+		this.nameOnModel = nameOnModel;
+	}
 }

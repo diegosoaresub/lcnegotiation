@@ -1,5 +1,7 @@
 package com.ifes.lc.negotiation.prediction;
 
+import java.util.Map;
+
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
@@ -38,5 +40,20 @@ public class DefaultPredictionService {
 		
 		return result;
 	}
+
 	
+	public DefaultPredictionResponse predict(Map<String, Double> params) {
+		
+		DefaultPredictionResponse result = webTarget
+							.path("predictDefault")
+							.request(MediaType.APPLICATION_JSON)
+							.post(Entity.json(params))
+							.readEntity(DefaultPredictionResponse.class);
+		
+		Log.println("Predicted Class: " + result.getPredicted_class());
+		Log.println("Delinquent Prob: " + result.getDelinquent_prob());
+		
+		return result;
+	}
+
 }

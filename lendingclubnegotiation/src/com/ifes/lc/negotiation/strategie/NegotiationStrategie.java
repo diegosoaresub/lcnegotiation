@@ -27,7 +27,7 @@ public class NegotiationStrategie {
             										   Application.t, Application.rounds,
                                                     attr.getAttributeType(), attr.getConcessionSpeed());
 
-            AttributeProposal ap = new AttributeProposal(attr.getName(), value, attr.getWeight(), attr.getAttributeType());
+            AttributeProposal ap = new AttributeProposal(attr.getName(), attr.getNameOnModel(), value, attr.getWeight(), attr.getAttributeType());
             proposal.put(attr.getName(), ap);
         }
 
@@ -54,7 +54,7 @@ public class NegotiationStrategie {
                         Application.t+1, Application.rounds,
                         attr.getAttributeType(), attr.getConcessionSpeed());
             }
-            proposal.put(attr.getName(), new AttributeProposal(attr.getName(), value, attr.getWeight(), attr.getAttributeType()));
+            proposal.put(attr.getName(), new AttributeProposal(attr.getName(), attr.getNameOnModel(), value, attr.getWeight(), attr.getAttributeType()));
         }
 
         return proposal;

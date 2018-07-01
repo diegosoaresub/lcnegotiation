@@ -16,8 +16,8 @@ public class Item {
         this.name = name;
     }
 
-    public void addAttribute(String name, double weight, double pap, double min, double max, AttributeType type){
-        this.attrs.add(new Attribute(name, weight, pap, min, max, type));
+    public void addAttribute(String name, String nameOnModel, double weight, double pap, double min, double max, AttributeType type){
+        this.attrs.add(new Attribute(name, nameOnModel, weight, pap, min, max, type));
     }
 
     public void addAttribute(Attribute attr){
